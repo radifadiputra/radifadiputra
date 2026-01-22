@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masjid Al-Hikmah - Profil & Kegiatan</title>
+    <style>
+        /* Reset dan dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: #0d5c3e;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo img {
+            max-width: 70px;
+            max-height: 70px;
+            border-radius: 50%;
+        }
+        
+        .header-text h1 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .header-text p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Navigasi */
+        nav {
+            background-color: #0a4730;
+            padding: 10px 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links li {
+            margin: 0 15px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding: 40px 0;
+        }
+        
+        @media (min-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section h2 {
+            color: #0d5c3e;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            font-size: 1.8rem;
+        }
+        
+        .section h3 {
+            color: #0a4730;
+            margin: 15px 0 10px;
+            font-size: 1.3rem;
+        }
+        
+        /* Profil */
+        .quote {
+            background-color: #f0f7f4;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #0d5c3e;
+            font-style: italic;
+        }
+        
+        /* Jadwal */
+        .schedule-list {
+            list-style: none;
+        }
+        
+        .schedule-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .schedule-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .activity {
+            font-weight: 500;
+        }
+        
+        .time {
+            background-color: #f0f7f4;
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: #0d5c3e;
+            font-weight: 500;
+        }
+        
+        /* Pengingat Sholat */
+        .prayer-reminder {
+            background: linear-gradient(135deg, #0d5c3e 0%, #0a4730 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(13, 92, 62, 0.2);
+        }
+        
+        .prayer-info {
+            margin-bottom: 20px;
+        }
+        
+        .next-prayer {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #ffd166;
+        }
+        
+        .current-time {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        
+        .countdown {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 15px 0;
+            color: #ffd166;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .countdown-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+        
+        .countdown-unit {
+            display: inline-block;
+            margin: 0 5px;
+            padding: 5px 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+        
+        /* Media Sosial */
+        .social-media {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        
+        .social-item:hover {
+            background-color: #f0f7f4;
+            transform: translateY(-3px);
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .social-text {
+            font-weight: 500;
+        }
+        
+        .social-handle {
+            color: #0d5c3e;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #0a4730;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        footer p {
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+        
+        /* Responsif */
+        @media (max-width: 768px) {
+            .header-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-links li {
+                margin: 5px 10px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .countdown {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                <div class="logo">
+                    <!-- Logo masjid - menggunakan placeholder dengan inisial -->
+                    <img src="GAMBAR/Logo Masjid Lama.jpg" alt="Logo Masjid Al-Hikmah">
+                </div>
+                <div class="header-text">
+                    <h1>Masjid Al-Hikmah</h1>
+                    <p>Kawasan Tegal, Jawa Tengah</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#profil">Profil</a></li>
+                <li><a href="#kegiatan">Kegiatan</a></li>
+                <li><a href="#pengingat-sholat">Pengingat Sholat</a></li>
+                <li><a href="#kontak">Kontak & Media Sosial</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <div class="main-content">
+            <div class="left-column">
+                <section id="profil" class="section">
+                    <h2>Profil Masjid Al-Hikmah</h2>
+                    <p>Masjid Al-Hikmah merupakan pusat kegiatan keislaman di kawasan Tegal, Jawa Tengah. Berdiri sejak tahun 1995, masjid ini telah menjadi tempat ibadah, pendidikan, dan pemberdayaan masyarakat muslim setempat.</p>
+                    <p>Dengan semangat "Mewujudkan Masjid Sebagai Pusat Peradaban Islam", Masjid Al-Hikmah senantiasa berupaya menghadirkan program-program yang mendukung peningkatan iman dan takwa jamaahnya, serta memberikan kontribusi positif bagi masyarakat sekitar.</p>
+                    
+                    <div class="quote">
+                        "Sebaik-baik rumah Allah di muka bumi adalah masjid, dan sebaik-baik amal di dalamnya adalah shalat berjamaah."<br>
+                        <strong>- HR. Ath-Thabrani</strong>
+                    </div>
+                    
+                    <div class="quote" style="margin-top: 15px;">
+                        "Dan masjid-masjid itu adalah milik Allah, maka janganlah kamu menyembah selain Allah sesuatu pun di dalamnya."<br>
+                        <strong>- QS. Al-Jin: 18</strong>
+                    </div>
+                </section>
+                
+                <section id="kegiatan" class="section">
+                    <h2>Jadwal Kegiatan Rutin</h2>
+                    <p>Berikut adalah jadwal kegiatan rutin yang dilaksanakan di Masjid Al-Hikmah:</p>
+                    
+                    <ul class="schedule-list">
+                        <li>
+                            <span class="activity">Kajian</span>
+                            <span class="time">Selasa, ba'da Maghrib</span>
+                        </li>
+                        <li>
+                            <span class="activity">Khafi/Tahlil</span>
+                            <span class="time">Kamis, ba'da Maghrib</span>
+                        </li>
+                        <li>
+                            <span class="activity">Pengajian Bulanan</span>
+                            <span class="time">Pukul 20.00</span>
+                        </li>
+                        <li>
+                            <span class="activity">Pengajian Bulanan Bapak-Bapak</span>
+                            <span class="time">Pukul 20.00</span>
+                        </li>
+                        <li>
+                            <span class="activity">Pengajian Bulanan Sakinah</span>
+                            <span class="time">Pukul 16.15</span>
+                        </li>
+                        <li>
+                            <span class="activity">TPA Anak-Anak</span>
+                            <span class="time">Jumat, Pukul 16.15</span>
+                        </li>
+                        <li>
+                            <span class="activity">Ngaji Anak-Anak</span>
+                            <span class="time">Selasa & Rabu, ba'da Maghrib</span>
+                        </li>
+                        <li>
+                            <span class="activity">Tadarus Ibu-Ibu</span>
+                            <span class="time">Rabu, Pukul 16.00</span>
+                        </li>
+                        <li>
+                            <span class="activity">Tadarus Bapak-Bapak</span>
+                            <span class="time">Sebulan sekali, Pukul 20.00</span>
+                        </li>
+                        <li>
+                            <span class="activity">Tadarus Remaja</span>
+                            <span class="time">Sebulan sekali, Pukul 20.00</span>
+                        </li>
+                    </ul>
+                    
+                    <p style="margin-top: 20px; font-style: italic; color: #666;">
+                        Catatan: Jadwal dapat berubah sesuai dengan kondisi dan kebijakan takmir masjid. Informasi perubahan akan disampaikan melalui papan pengumuman.
+                    </p>
+                </section>
+            </div>
+            
+            <div class="right-column">
+                <section id="pengingat-sholat" class="section">
+                    <h2>Pengingat Waktu Sholat</h2>
+                    
+                    <div class="prayer-reminder">
+                        <div class="prayer-info">
+                            <div class="current-time"><?php echo $currentDateFormatted; ?> | <?php echo $currentTimeFormatted; ?></div>
+                            <div class="next-prayer">Sholat <?php echo $nextPrayer; ?> berikutnya</div>
+                            <div>Pukul <?php echo $nextPrayerTime; ?></div>
+                        </div>
+                        
+                        <div class="countdown" id="countdown">
+                            <?php 
+                            // Tampilkan waktu tersisa dari PHP
+                            echo $timeRemaining; 
+                            ?>
+                        </div>
+                        
+                        <div class="countdown-label">Waktu tersisa menuju sholat <?php echo $nextPrayer; ?></div>
+                    </div>
+                    
+                    <h3>Jadwal Sholat Hari Ini</h3>
+                    <p>Berikut adalah jadwal sholat untuk hari ini di Masjid Al-Hikmah:</p>
+                    
+                    
+                    <p style="margin-top: 20px; font-size: 0.9rem; color: #666;">
+                        * Waktu sholat berdasarkan wilayah Tegal dan dapat berbeda sedikit tergantung lokasi.
+                    </p>
+                </section>
+                
+                <section id="kontak" class="section">
+                    <h2>Media Sosial & Kontak</h2>
+                    <p>Ikuti dan dapatkan informasi terbaru tentang kegiatan Masjid Al-Hikmah melalui media sosial berikut:</p>
+                    
+                    <div class="social-media">
+                        <div class="social-item">
+                            <div class="social-icon">
+                                <!-- Logo Instagram menggunakan tag <img> -->
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/2048px-Instagram_logo_2016.svg.png" alt="Logo Instagram">
+                            </div>
+                            <div>
+                                <div class="social-text">Instagram</div>
+                                <div class="social-handle">@masjidalhikmahtegal</div>
+                            </div>
+                        </div>
+                        
+                        <div class="social-item">
+                            <div class="social-icon">
+                                <!-- Logo TikTok menggunakan tag <img> -->
+                                <img src="https://yt3.googleusercontent.com/HjdbdkVafbaJgboDOjgQEYSZ2daTWhOfwFGTz78lc_A-RUczssi0uo5lttwzJtTGfKXjmLvfYg=s900-c-k-c0x00ffffff-no-rj" alt="Logo TikTok">
+                            </div>
+                            <div>
+                                <div class="social-text">TikTok</div>
+                                <div class="social-handle">@masjidal_hikmah_</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 style="margin-top: 30px;">Informasi Lainnya</h3>
+                    <p>Untuk informasi lebih lanjut tentang kegiatan, program, atau donasi, silakan hubungi:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Takmir Masjid Al-Hikmah</li>
+                        <li>Alamat: Jl. Arjuna. Rt 001/Rw 014, Tegal, Sidoarum Godean Sleman</li>
+                        <li>Telepon: (+62) 813-2881-4479</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; <?php echo date("Y"); ?> Masjid Al-Hikmah Tegal. Semua hak dilindungi.</p>
+            <p>Website ini dibuat untuk kepentingan informasi jamaah dan masyarakat umum.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Fungsi untuk mengupdate countdown waktu sholat
+        function updateCountdown() {
+            // Data waktu sholat (sesuai dengan PHP)
+            const prayerTimes = {
+                "Subuh": "04:15:00",
+                "Dzuhur": "11:45:00", 
+                "Ashar": "15:00:00",
+                "Maghrib": "17:45:00",
+                "Isya": "19:00:00"
+            };
+            
+            // Waktu saat ini
+            const now = new Date();
+            const currentHours = now.getHours().toString().padStart(2, '0');
+            const currentMinutes = now.getMinutes().toString().padStart(2, '0');
+            const currentSeconds = now.getSeconds().toString().padStart(2, '0');
+            const currentTime = `${currentHours}:${currentMinutes}:${currentSeconds}`;
+            const currentTimeInSeconds = (parseInt(currentHours) * 3600) + (parseInt(currentMinutes) * 60) + parseInt(currentSeconds);
+            
+            // Cari sholat berikutnya
+            let nextPrayer = "";
+            let nextPrayerTime = "";
+            let secondsRemaining = 0;
+            
+            for (const [prayer, time] of Object.entries(prayerTimes)) {
+                const [hours, minutes, seconds] = time.split(':');
+                const prayerTimeInSeconds = (parseInt(hours) * 3600) + (parseInt(minutes) * 60) + parseInt(seconds);
+                
+                if (prayerTimeInSeconds > currentTimeInSeconds) {
+                    nextPrayer = prayer;
+                    nextPrayerTime = time;
+                    secondsRemaining = prayerTimeInSeconds - currentTimeInSeconds;
+                    break;
+                }
+            }
+            
+            // Jika tidak ada sholat lagi hari ini, maka sholat berikutnya adalah Subuh besok
+            if (!nextPrayer) {
+                nextPrayer = "Subuh";
+                nextPrayerTime = "04:15:00";
+                const subuhTimeInSeconds = (4 * 3600) + (15 * 60);
+                const secondsInDay = 24 * 3600;
+                secondsRemaining = (secondsInDay - currentTimeInSeconds) + subuhTimeInSeconds;
+            }
+            
+            // Hitung jam, menit, detik tersisa
+            const hoursRemaining = Math.floor(secondsRemaining / 3600);
+            const minutesRemaining = Math.floor((secondsRemaining % 3600) / 60);
+            const secsRemaining = secondsRemaining % 60;
+            
+            // Format waktu tersisa
+            const timeRemaining = `${hoursRemaining.toString().padStart(2, '0')} jam ${minutesRemaining.toString().padStart(2, '0')} menit ${secsRemaining.toString().padStart(2, '0')} detik`;
+            
+            // Update tampilan countdown
+            document.getElementById('countdown').textContent = timeRemaining;
+            
+            // Update informasi sholat berikutnya jika diperlukan
+            const nextPrayerElement = document.querySelector('.next-prayer');
+            if (nextPrayerElement && nextPrayerElement.textContent !== `Sholat ${nextPrayer} berikutnya`) {
+                nextPrayerElement.textContent = `Sholat ${nextPrayer} berikutnya`;
+                document.querySelector('.prayer-info div:nth-child(3)').textContent = `Pukul ${nextPrayerTime.substring(0, 5)}`;
+                document.querySelector('.countdown-label').textContent = `Waktu tersisa menuju sholat ${nextPrayer}`;
+                
+                // Update highlight di daftar jadwal sholat
+                document.querySelectorAll('.schedule-list li').forEach(li => {
+                    li.querySelector('.time').style.backgroundColor = '#f0f7f4';
+                    li.querySelector('.time').style.color = '#0d5c3e';
+                    li.querySelector('.time').style.fontWeight = '500';
+                    
+                    const prayerName = li.querySelector('.activity').textContent;
+                    if (prayerName === `Sholat ${nextPrayer}`) {
+                        li.querySelector('.time').style.backgroundColor = '#ffd166';
+                        li.querySelector('.time').style.color = '#0a4730';
+                        li.querySelector('.time').style.fontWeight = '600';
+                        
+                        // Hapus teks "(Berikutnya)" dari semua item
+                        const nextText = li.querySelector('.time span');
+                        if (nextText) nextText.remove();
+                        
+                        // Tambahkan teks "(Berikutnya)" hanya untuk sholat berikutnya
+                        const span = document.createElement('span');
+                        span.textContent = ' (Berikutnya)';
+                        span.style.fontSize = '0.8rem';
+                        li.querySelector('.time').appendChild(span);
+                    } else {
+                        // Hapus teks "(Berikutnya)" dari item lain
+                        const nextText = li.querySelector('.time span');
+                        if (nextText) nextText.remove();
+                    }
+                });
+            }
+            
+            // Update waktu saat ini
+            const currentDate = now.toLocaleDateString('id-ID', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            const currentTimeFormatted = `${currentHours}:${currentMinutes}:${currentSeconds}`;
+            document.querySelector('.current-time').textContent = `${currentDate} | ${currentTimeFormatted}`;
+        }
+        
+        // Update countdown setiap detik
+        setInterval(updateCountdown, 1000);
+        
+        // Jalankan sekali saat halaman dimuat
+        updateCountdown();
+        
+        // Smooth scroll untuk navigasi
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Highlight menu aktif berdasarkan scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let currentSectionId = '';
+            const scrollPosition = window.scrollY + 150;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    currentSectionId = '#' + section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentSectionId) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Menambahkan style untuk menu aktif
+        const style = document.createElement('style');
+        style.textContent = `
+            .nav-links a.active {
+                background-color: rgba(255, 255, 255, 0.2);
+                font-weight: 600;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
